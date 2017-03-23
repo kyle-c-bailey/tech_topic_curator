@@ -1,5 +1,4 @@
 <% @word_frequencies.reverse.each do |word| %>
-  <% next if word[1][:count] <= 2 %>
   <%= "\"#{word[0]}\" has #{word[1][:count]} occurrences" %>
   <%# word[1][:sources].to_s %>
   <br>

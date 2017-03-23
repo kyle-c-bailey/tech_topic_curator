@@ -57,6 +57,7 @@ class FeedsController < ApplicationController
 
     Entry.last_day.each do |entry|
       title_words = entry.title.split
+
       title_words.each do |word|
         word = clean_word(word)
         next if is_integer?(word)
@@ -88,8 +89,19 @@ class FeedsController < ApplicationController
           word_hash[phrase] = {count: 1, sources: [entry.url]}
         end
       end
+
     end
 
+    word_hash.delete_if { |word, meta| meta[:count] < 3 }
+    word_hash.each do |word, meta|
+      next if word.count(' ') == 0
+      word.split.each do |single_word|
+        next unless word_hash.key?(single_word)
+        if word_hash[single_word][:sources].sort == meta[:sources].sort
+          word_hash.delete(single_word)
+        end 
+      end
+    end
     @word_frequencies = word_hash.sort_by{|word, meta| meta[:count]}
   end
 
