@@ -55,11 +55,12 @@ class FeedsController < ApplicationController
     word_hash = Hash.new
     entry_titles = Entry.pluck(:title)
 
-    Entry.all.each do |entry|
-      entry.title.split.each do |word|
-        word = word.chomp(":")
+    Entry.last_day.each do |entry|
+      title_words = entry.title.split
+      title_words.each do |word|
+        word = clean_word(word)
         next if is_integer?(word)
-        next if COMMON_WORDS.include?(word.downcase) || COMMON_WORDS.include?(word.downcase.singularize)
+        next if is_common_word?(word)
         if word_hash.has_key?(word)
           next if word_hash[word][:sources].include?(entry.url)
           word_hash[word][:count] = word_hash[word][:count] + 1
@@ -68,12 +69,39 @@ class FeedsController < ApplicationController
           word_hash[word] = {count: 1, sources: [entry.url]}
         end
       end
+
+      title_words.each_with_index do |word, index|
+        next_word_index = index + 1
+        next if next_word_index >= title_words.length
+        next_word = title_words[next_word_index]
+        next if is_common_word?(word) || is_common_word?(next_word)
+        word = clean_word(word)
+        next_word = clean_word(next_word)
+
+        phrase = "#{word} #{next_word}"
+
+        if word_hash.has_key?(phrase)
+          next if word_hash[phrase][:sources].include?(entry.url)
+          word_hash[phrase][:count] = word_hash[phrase][:count] + 1
+          word_hash[phrase][:sources] << entry.url
+        else
+          word_hash[phrase] = {count: 1, sources: [entry.url]}
+        end
+      end
     end
 
     @word_frequencies = word_hash.sort_by{|word, meta| meta[:count]}
   end
 
   private
+
+    def is_common_word?(word)
+      COMMON_WORDS.include?(word.downcase) || COMMON_WORDS.include?(word.downcase.singularize)
+    end
+
+    def clean_word(word)
+      word.chomp(":").chomp(",").chomp("'")
+    end
 
     def is_integer?(word)
       word.to_i.to_s == word
