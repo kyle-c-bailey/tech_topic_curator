@@ -1,5 +1,8 @@
-<% @word_frequencies.reverse.each do |word| %>
-  <%= "\"#{word[0]}\" has #{word[1][:count]} occurrences" %>
+<%# @word_frequencies.reverse.each do |word| %>
+  <%# "\"#{word[0]}\" has #{word[1][:count]} occurrences" %>
   <%# word[1][:sources].to_s %>
-  <br>
+<%# end %>
+
+<% @phrases.each do |phrase| %>
+  <%= "\"#{phrase.content}\" has #{phrase.count} occurrences" %><br>
 <% end %>
