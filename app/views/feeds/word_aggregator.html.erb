@@ -4,5 +4,6 @@
 <%# end %>
 
 <% @phrases.each do |phrase| %>
-  <%= "\"#{phrase.content}\" has #{phrase.count} occurrences" %><br>
+  <%= "\"#{phrase.content}\" has #{phrase.count} occurrences" %>
+  <%= phrase.phrase_entries.pluck(:entry_id).to_s %><br>
 <% end %>
