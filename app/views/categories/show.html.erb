@@ -1,0 +1,5 @@
+<h1><%= Category.name.pluralize %></h1>
+
+<% @category.items.each do |item| %>
+  <%= item.name %><br>
+<% end %>

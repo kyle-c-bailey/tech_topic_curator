@@ -8,5 +8,6 @@ Rails.application.routes.draw do
     end
   end
   resources :entries, only: [:index, :show]
+  resources :categories
   root 'feeds#index'
 end
