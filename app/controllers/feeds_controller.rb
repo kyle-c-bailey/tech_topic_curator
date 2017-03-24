@@ -55,64 +55,10 @@ class FeedsController < ApplicationController
     Phrase.destroy_all
     
     generate_three_word_phrases
-    cull_phrases
-
     generate_two_word_phrases
-    cull_phrases
-
     generate_one_word_phrases
-    cull_phrases
 
     @phrases = Phrase.joins(:phrase_entries).group("phrases.id").order("count(phrases.id) desc")
-
-    # Entry.last_day.each do |entry|
-    #   title_words = entry.title.split
-
-    #   title_words.each do |word|
-    #     word = clean_word(word)
-    #     next if is_integer?(word)
-    #     next if is_common_word?(word)
-    #     if word_hash.has_key?(word)
-    #       next if word_hash[word][:sources].include?(entry.url)
-    #       word_hash[word][:count] = word_hash[word][:count] + 1
-    #       word_hash[word][:sources] << entry.url
-    #     else
-    #       word_hash[word] = {count: 1, sources: [entry.url]}
-    #     end
-    #   end
-
-    #   title_words.each_with_index do |word, index|
-    #     next_word_index = index + 1
-    #     next if next_word_index >= title_words.length
-    #     next_word = title_words[next_word_index]
-    #     next if is_common_word?(word) || is_common_word?(next_word)
-    #     word = clean_word(word)
-    #     next_word = clean_word(next_word)
-
-    #     phrase = "#{word} #{next_word}"
-
-    #     if word_hash.has_key?(phrase)
-    #       next if word_hash[phrase][:sources].include?(entry.url)
-    #       word_hash[phrase][:count] = word_hash[phrase][:count] + 1
-    #       word_hash[phrase][:sources] << entry.url
-    #     else
-    #       word_hash[phrase] = {count: 1, sources: [entry.url]}
-    #     end
-    #   end
-
-    # end
-
-    # word_hash.delete_if { |word, meta| meta[:count] < 3 }
-    # word_hash.each do |word, meta|
-    #   next if word.count(' ') == 0
-    #   word.split.each do |single_word|
-    #     next unless word_hash.key?(single_word)
-    #     if word_hash[single_word][:sources].sort == meta[:sources].sort
-    #       word_hash.delete(single_word)
-    #     end 
-    #   end
-    # end
-    # @word_frequencies = word_hash.sort_by{|word, meta| meta[:count]}
   end
 
   private
@@ -227,13 +173,8 @@ class FeedsController < ApplicationController
       end
     end
 
-    def cull_phrases
-      phrases = Phrase.joins(:phrase_entries).group('phrases.id').having('count(phrase_id) < 3').pluck(:'phrases.id')
-      Phrase.destroy(phrases)
-    end
-
     def is_common_word?(word)
-      COMMON_WORDS.include?(word.downcase) || COMMON_WORDS.include?(word.downcase.singularize)
+      COMMON_WORDS.include?(word) || COMMON_WORDS.include?(word.downcase) || COMMON_WORDS.include?(word.downcase.singularize)
     end
 
     def clean_word(word)
