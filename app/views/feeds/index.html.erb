@@ -1,3 +1,4 @@
+
 <p id="notice"><%= notice %></p>
 
 <h1>Feeds</h1>
@@ -21,7 +22,7 @@
         <td><%= link_to 'Show', feed %></td>
         <td><%= link_to 'Edit', edit_feed_path(feed) %></td>
         <td><%= link_to 'Destroy', feed, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><%= link_to 'Entries', entries_path(feed) %></td>
+        <td><%= link_to 'Entries', entries_feed_path(feed) %></td>
       </tr>
     <% end %>
   </tbody>

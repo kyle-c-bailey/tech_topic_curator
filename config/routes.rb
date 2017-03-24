@@ -4,8 +4,9 @@ Rails.application.routes.draw do
       get 'word_aggregator'
     end
     member do
-     resources :entries, only: [:index, :show]
+      get 'entries'
     end
   end
+  resources :entries, only: [:index, :show]
   root 'feeds#index'
 end
