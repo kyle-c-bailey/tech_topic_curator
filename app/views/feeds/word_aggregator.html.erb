@@ -4,8 +4,8 @@
   <span style="color:red;"><%= "BIG COMPANY" if phrase.big_company? %></span>
     <span style="color:red;"><%= "PRODUCT" if phrase.product? %></span>
   <br>
-  <% phrase.phrase_entries.pluck(:entry_id).each do |entry| %>
-    <%= link_to entry, entry_path(entry) %>
+  <% phrase.phrase_entries.each do |pe| %>
+    <%= link_to pe.entry.title, entry_path(pe.entry_id) %><br>
   <% end %>
   <br>
   <br>
