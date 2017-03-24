@@ -52,9 +52,6 @@ class FeedsController < ApplicationController
   end
 
   def word_aggregator
-    word_hash = Hash.new
-    entry_titles = Entry.pluck(:title)
-
     Phrase.destroy_all
     
     generate_three_word_phrases
@@ -121,6 +118,8 @@ class FeedsController < ApplicationController
   private
 
     def generate_three_word_phrases
+      phrase_hash = Hash.new
+
       Entry.last_day.each do |entry|
         title_words = entry.title.split
 
@@ -137,12 +136,27 @@ class FeedsController < ApplicationController
 
           phrase_content = "#{word} #{next_word} #{two_word}"
 
-          Phrase.create_or_increment(phrase_content, entry)
+          if phrase_hash.has_key?(phrase_content)
+            next if phrase_hash[phrase_content][:sources].include?(entry.id)
+            phrase_hash[phrase_content][:count] = phrase_hash[phrase_content][:count] + 1
+            phrase_hash[phrase_content][:sources] << entry.id
+          else
+            phrase_hash[phrase_content] = {count: 1, sources: [entry.id]}
+          end
+        end
+      end
+
+      phrase_hash.delete_if { |phrase, meta| meta[:count] < 3 }
+      phrase_hash.each do |phrase, meta|
+        meta[:sources].each do |entry_id|
+          Phrase.create_or_increment(phrase, entry_id)
         end
       end
     end
 
     def generate_two_word_phrases
+      phrase_hash = Hash.new
+
       Entry.last_day.each do |entry|
         title_words = entry.title.split
 
@@ -156,12 +170,27 @@ class FeedsController < ApplicationController
 
           phrase_content = "#{word} #{next_word}"
 
-          Phrase.create_or_increment(phrase_content, entry)
+          if phrase_hash.has_key?(phrase_content)
+            next if phrase_hash[phrase_content][:sources].include?(entry.id)
+            phrase_hash[phrase_content][:count] = phrase_hash[phrase_content][:count] + 1
+            phrase_hash[phrase_content][:sources] << entry.id
+          else
+            phrase_hash[phrase_content] = {count: 1, sources: [entry.id]}
+          end
+        end
+      end
+
+      phrase_hash.delete_if { |phrase, meta| meta[:count] < 3 }
+      phrase_hash.each do |phrase, meta|
+        meta[:sources].each do |entry_id|
+          Phrase.create_or_increment(phrase, entry_id)
         end
       end
     end
 
     def generate_one_word_phrases
+      phrase_hash = Hash.new
+
       Entry.last_day.each do |entry|
         title_words = entry.title.split
 
@@ -170,7 +199,20 @@ class FeedsController < ApplicationController
           next if is_integer?(word)
           next if is_common_word?(word)
 
-          Phrase.create_or_increment(word, entry)
+          if phrase_hash.has_key?(word)
+            next if phrase_hash[word][:sources].include?(entry.id)
+            phrase_hash[word][:count] = phrase_hash[word][:count] + 1
+            phrase_hash[word][:sources] << entry.id
+          else
+            phrase_hash[word] = {count: 1, sources: [entry.id]}
+          end
+        end
+      end
+
+      phrase_hash.delete_if { |phrase, meta| meta[:count] < 3 }
+      phrase_hash.each do |phrase, meta|
+        meta[:sources].each do |entry_id|
+          Phrase.create_or_increment(phrase, entry_id)
         end
       end
     end
