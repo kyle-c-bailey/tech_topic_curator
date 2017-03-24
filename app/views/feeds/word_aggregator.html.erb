@@ -1,9 +1,12 @@
-<%# @word_frequencies.reverse.each do |word| %>
-  <%# "\"#{word[0]}\" has #{word[1][:count]} occurrences" %>
-  <%# word[1][:sources].to_s %>
-<%# end %>
-
 <% @phrases.each do |phrase| %>
   <%= "\"#{phrase.content}\" has #{phrase.count} occurrences" %>
-  <%= phrase.phrase_entries.pluck(:entry_id).to_s %><br>
+  <span style="color:red;"><%= "SOFTWARE OS" if phrase.software_os? %></span>
+  <span style="color:red;"><%= "BIG COMPANY" if phrase.big_company? %></span>
+    <span style="color:red;"><%= "PRODUCT" if phrase.product? %></span>
+  <br>
+  <% phrase.phrase_entries.pluck(:entry_id).each do |entry| %>
+    <%= link_to entry, entry_path(entry) %>
+  <% end %>
+  <br>
+  <br>
 <% end %>
