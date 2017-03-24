@@ -2,7 +2,7 @@
   <% @entries.each do |entry| %>
     <div class="panel panel-default">
       <div class="panel-body">
-        <%= entry.title %> 
+        <%= link_to entry.title, entry %> 
         <% if entry.published %>
           - <i> published <%= time_ago_in_words(entry.published) %> ago.</i>
         <% end %>
