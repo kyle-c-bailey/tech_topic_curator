@@ -1,11 +1,9 @@
 <div class="container">
   <% @entries.each do |entry| %>
+    <% next unless entry.present? && entry.title.present? %>
     <div class="panel panel-default">
       <div class="panel-body">
-          <%= link_to entry.title, entry.id %>
-          <% if if entry.published.present? %>
-            - <i> published <%= time_ago_in_words(entry.published) %> ago.</i>
-          <% end %>
+          <%= link_to entry.title, entry.id %> - <i> published <%= time_ago_in_words(entry.published) if entry.published.present?%> ago.</i>
       </div>
     </div>
   <% end %>
