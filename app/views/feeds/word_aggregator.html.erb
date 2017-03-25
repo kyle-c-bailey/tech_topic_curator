@@ -1,8 +1,8 @@
 <% @phrases.each do |phrase| %>
   <%= "\"#{phrase.content}\" has #{phrase.count} occurrences" %>
-  <span style="color:red;"><%= "SOFTWARE OS" if phrase.software_os? %></span>
-  <span style="color:red;"><%= "BIG COMPANY" if phrase.big_company? %></span>
-    <span style="color:red;"><%= "PRODUCT" if phrase.product? %></span>
+  <% Item.where('lower(name) = ?', phrase.content.downcase).each do |item| %>
+      <span style="color:red;"><%= item.category.name.titleize %></span>
+  <% end %>
   <br>
   <% phrase.phrase_entries.each do |pe| %>
     <%= link_to pe.entry.title, entry_path(pe.entry_id) %><br>

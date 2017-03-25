@@ -19,7 +19,7 @@ class CategoriesController < ApplicationController
     file_contents.gsub!(/\r\n?/, "\n")
 
     file_contents.each_line do |line|
-      Item.create!(category_id: category.id, name: line)
+      Item.create!(category_id: category.id, name: line.gsub("\n",''))
     end
 
     redirect_to categories_path
