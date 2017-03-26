@@ -1,11 +1,17 @@
 class CategoriesController < ApplicationController
+  before_action :set_category, only: [:show, :destroy]
+
   def index
     @categories = Category.order('created_at desc')
     @category = Category.new
   end
 
   def show
-    @category = Category.find(params[:id])
+  end
+
+  def destroy
+    @category.destroy
+    redirect_to categories_url, notice: 'Category was successfully destroyed.'
   end
 
   def create
@@ -23,5 +29,11 @@ class CategoriesController < ApplicationController
     end
 
     redirect_to categories_path
+  end
+
+  private
+
+  def set_category
+    @category = Category.find(params[:id])
   end
 end
