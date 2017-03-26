@@ -1,0 +1,5 @@
+<h1><%= @context.name.pluralize %></h1>
+
+<% @context.context_words.each do |word| %>
+  <%= word.name %><br>
+<% end %>

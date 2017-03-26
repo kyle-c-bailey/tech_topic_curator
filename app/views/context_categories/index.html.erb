@@ -1,0 +1,19 @@
+<h2>Context Categories</h2>
+
+<h3>Add a new context</h3><br>
+<%= form_for @context do |f| %>
+  <%= f.file_field :context_file %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
+
+<br>
+<br>
+
+<h3>Current Categories</h3>
+<% @contexts.each do |context| %>
+  <%= link_to context.name, context_category_path(context.id) %><br>
+  <%= link_to 'Destroy', context, method: :delete, data: { confirm: 'Are you sure?' } %><br><br>
+<% end %>

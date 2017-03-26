@@ -9,5 +9,6 @@ Rails.application.routes.draw do
   end
   resources :entries, only: [:index, :show]
   resources :categories
+  resources :context_categories
   root 'feeds#index'
 end
