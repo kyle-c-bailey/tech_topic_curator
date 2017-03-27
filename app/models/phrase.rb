@@ -19,6 +19,7 @@ class Phrase < ApplicationRecord
   end
 
   def self.create_or_increment(content, entry_id)
+    return if ContextWord.where("lower(name) = ?", content).present?
     phrase = Phrase.where(content: content).take
     unless phrase.present?
       phrase = Phrase.create!(content: content)
