@@ -115,9 +115,9 @@ namespace :feed_sync do
 
     phrase_hash.delete_if { |phrase, meta| meta[:count] < 5 }
     phrase_hash.each do |phrase, meta|
-      containing_phrase = Phrase.where("content like ?", "%#{phrase}%").take
+      containing_phrases = Phrase.where("content like ?", "%#{phrase}%").includes(:phrase_entries)
       if containing_phrase.present?
-        meta[:sources] = meta[:sources] - containing_phrase.phrase_entries.pluck(:entry_id)
+        meta[:sources] = meta[:sources] - containing_phrases.pluck(:entry_id)
       end
       next unless meta[:sources].size > 3
       meta[:sources].each do |entry_id|
