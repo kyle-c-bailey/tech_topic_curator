@@ -20,8 +20,7 @@ namespace :feed_sync do
     phrase_hash = Hash.new
 
     Entry.last_day.each do |entry|
-      title_words = entry.title.split
-      title_words = clean_title(title_words)
+      title_words = clean_title(entry.title).split
 
       title_words.each_with_index do |word, index|
         next_word_index = index + 1
@@ -58,8 +57,7 @@ namespace :feed_sync do
     phrase_hash = Hash.new
 
     Entry.last_day.each do |entry|
-      title_words = entry.title.split
-      title_words = clean_title(title_words)
+      title_words = clean_title(entry.title).split
 
       title_words.each_with_index do |word, index|
         next_word_index = index + 1
@@ -98,8 +96,7 @@ namespace :feed_sync do
     phrase_hash = Hash.new
 
     Entry.last_day.each do |entry|
-      title_words = entry.title.split
-      title_words = clean_title(title_words)
+      title_words = clean_title(entry.title).split
 
       title_words.each do |word|
         word = clean_word(word)
