@@ -65,44 +65,6 @@ class FeedsController < ApplicationController
   end
 
   private
-
-    def generate_three_word_phrases
-      phrase_hash = Hash.new
-
-      Entry.last_day.each do |entry|
-        title_words = entry.title.split
-
-        title_words.each_with_index do |word, index|
-          next_word_index = index + 1
-          two_word_index = index + 2
-
-          next if two_word_index >= title_words.length
-
-          word = clean_word(word)
-          next_word = clean_word(title_words[next_word_index])
-          two_word = clean_word(title_words[two_word_index])
-          next if is_common_word?(word) && is_common_word?(next_word) && is_common_word?(two_word)
-
-          phrase_content = "#{word} #{next_word} #{two_word}"
-
-          if phrase_hash.has_key?(phrase_content)
-            next if phrase_hash[phrase_content][:sources].include?(entry.id)
-            phrase_hash[phrase_content][:count] = phrase_hash[phrase_content][:count] + 1
-            phrase_hash[phrase_content][:sources] << entry.id
-          else
-            phrase_hash[phrase_content] = {count: 1, sources: [entry.id]}
-          end
-        end
-      end
-
-      phrase_hash.delete_if { |phrase, meta| meta[:count] < 5 }
-      phrase_hash.each do |phrase, meta|
-        meta[:sources].each do |entry_id|
-          Phrase.create_or_increment(phrase, entry_id)
-        end
-      end
-    end
-
     def is_common_word?(word)
       COMMON_WORDS.include?(word) || COMMON_WORDS.include?(word.downcase) || COMMON_WORDS.include?(word.downcase.singularize)
     end
