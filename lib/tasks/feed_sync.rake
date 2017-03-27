@@ -33,7 +33,7 @@ namespace :feed_sync do
         two_word = clean_word(title_words[two_word_index])
         next if is_common_word?(word) && is_common_word?(next_word) && is_common_word?(two_word)
 
-        phrase_content = "#{word} #{next_word} #{two_word}"
+        phrase_content = "#{word.singularize.chomp("'")} #{next_word.singularize.chomp("'")} #{two_word.singularize.chomp("'")}"
 
         if phrase_hash.has_key?(phrase_content)
           next if phrase_hash[phrase_content][:sources].include?(entry.id)
@@ -67,7 +67,7 @@ namespace :feed_sync do
         next_word = clean_word(title_words[next_word_index])
         next if is_common_word?(word) && is_common_word?(next_word)
 
-        phrase_content = "#{word} #{next_word}"
+        phrase_content = "#{word.singularize.chomp("'")} #{next_word.singularize.chomp("'")}"
 
         if phrase_hash.has_key?(phrase_content)
           next if phrase_hash[phrase_content][:sources].include?(entry.id)
@@ -102,6 +102,7 @@ namespace :feed_sync do
         word = clean_word(word)
         next if is_integer?(word)
         next if is_common_word?(word)
+        word = word.singularize.chomp("'")
 
         if phrase_hash.has_key?(word)
           next if phrase_hash[word][:sources].include?(entry.id)
