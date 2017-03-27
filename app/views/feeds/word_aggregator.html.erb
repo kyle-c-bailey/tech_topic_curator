@@ -7,8 +7,9 @@
   <% phrase.entries.each do |entry| %>
     <%= link_to entry.title, entry_path(entry.id) %>
     <% entry.entry_contexts.each do |ec| %>
-      <span style="color:red;"><%= ec.context_category.name.titleize %></span><br>
+      <span style="color:red;"><%= ec.context_category.name.titleize %></span>
     <% end %>
+    <br>
   <% end %>
   <br>
   <br>
