@@ -7,22 +7,22 @@
 
   <% ContextCategory.all do |category| %>
     <% entries = phrase.entries.joins(:context_categories).where("context_categories.id = ?", category.id) %>
-    <% next unless entries.present %>
+    <% next unless entries.present? %>
     <%= "#{phrase.content} articles about #{category.name.titleize}:" %>
     <% entries.each do |entry| %>
-      <%= link_to entry.title, entry_path(entry.id) %>
+      <%= link_to entry.title, entry_path(entry.id) %><br>
     <% end %>
     <br>
   <% end %>
 
-<!--   <% contextless_entries = phrase.entries.where("entries.id NOT IN (SELECT entry_id from entry_contexts)") %>
+  <% contextless_entries = phrase.entries.where("entries.id NOT IN (SELECT entry_id from entry_contexts)") %>
   <% if contextless_entries.present? %>
     <%= "Other #{phrase.content} articles:" %>
-    <%= contextless_entries.each do |entry| %>
-      <%= link_to entry.title, entry_path(entry.id) %>
+    <% contextless_entries.each do |entry| %>
+      <%= link_to entry.title, entry_path(entry.id) %><br>
     <% end %>
     <br>
-  <% end %> -->
+  <% end %>
 
 <!--   <% phrase.entries.includes(:context_categories).each do |entry| %>
     <%= link_to entry.title, entry_path(entry.id) %>
