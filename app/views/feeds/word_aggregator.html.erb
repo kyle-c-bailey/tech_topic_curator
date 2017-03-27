@@ -4,9 +4,9 @@
       <span style="color:red;"><%= item.category.name.titleize %></span>
   <% end %>
   <br>
-  <% phrase.phrase_entries.each do |pe| %>
-    <%= link_to pe.entry.title, entry_path(pe.entry_id) %>
-    <% pe.entry.entry_contexts.each do |ec| %>
+  <% phrase.entries.each do |pe| %>
+    <%= link_to entry.title, entry_path(entry.id) %>
+    <% entry.entry_contexts.each do |ec| %>
       <span style="color:red;"><%= ec.context_category.name.titleize %></span><br>
     <% end %>
   <% end %>

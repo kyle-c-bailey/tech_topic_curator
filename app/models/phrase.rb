@@ -1,5 +1,6 @@
 class Phrase < ApplicationRecord
   has_many :phrase_entries, dependent: :destroy
+  has_many :entries, through: :phrase_entries
 
   def count
     self.phrase_entries.count
