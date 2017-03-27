@@ -9,7 +9,7 @@
   <% if phrase.similar_phrases.present? %>
     Similar phrases:<br>
     <% phrase.similar_phrases.each do |similar_phrase| %>
-      <%= "#{similar_phrase.content.titleize} - #{similar_phrase.count} shared articles" %><br>
+      <%= "#{similar_phrase[:content].titleize} - #{similar_phrase[:count]} shared articles" %><br>
     <% end %>
     <br>
   <% end %>
