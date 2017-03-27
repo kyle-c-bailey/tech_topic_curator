@@ -8,7 +8,7 @@ class Phrase < ApplicationRecord
 
   def similar_phrases
     similar_phrases = []
-    phrase.each do |phrase|
+    Phrase.each do |phrase|
       next if phrase.id == self.id
       intersection = self.phrase_entries.pluck(:entry_id) & phrase.phrase_entries.pluck(:entry_id)
       similar_phrases << {content: phrase.content, count: intersection.size} if intersection.size > 3
