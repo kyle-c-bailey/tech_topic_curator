@@ -7,13 +7,15 @@ class Phrase < ApplicationRecord
   end
 
   def similar_phrases
-    similar_phrases = []
-    Phrase.all.each do |phrase|
-      next if phrase.id == self.id
-      intersection = self.phrase_entries.pluck(:entry_id) & phrase.phrase_entries.pluck(:entry_id)
-      similar_phrases << {content: phrase.content, count: intersection.size} if intersection.size > 3
+    Rails.cache.fetch("similar_phrases/#{self.id}") do
+      similar_phrases = []
+      Phrase.all.each do |phrase|
+        next if phrase.id == self.id
+        intersection = self.phrase_entries.pluck(:entry_id) & phrase.phrase_entries.pluck(:entry_id)
+        similar_phrases << {content: phrase.content, count: intersection.size} if intersection.size > 3
+      end
+      similar_phrases
     end
-    return similar_phrases
   end
 
   def self.create_or_increment(content, entry_id)
