@@ -133,7 +133,7 @@ namespace :feed_sync do
 
   def clean_word(word)
     word.chomp(":").chomp(",").chomp("'")
-    word.gsub(/\u2013|\u2014/g, "-")
+    word.gsub(/\u2013|\u2014/, "-")
   end
 
   def is_integer?(word)
