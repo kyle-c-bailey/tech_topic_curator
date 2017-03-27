@@ -15,7 +15,7 @@
     <br>
   <% end %>
 
-  <% contextless_entries = phrase.entires.where("entries.id NOT IN (SELECT entry_id from entry_context)") %>
+  <% contextless_entries = phrase.entries.where("entries.id NOT IN (SELECT entry_id from entry_context)") %>
   <% if contextless_entries.present? %>
     <%= "Other #{phrase.content} articles:" %>
     <%= contextless_entries.each do |entry| %>
