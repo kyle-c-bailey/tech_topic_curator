@@ -132,7 +132,8 @@ namespace :feed_sync do
   end
 
   def clean_title(title)
-    title.slice!("WATCH:").slice!("The Download, Mar")
+    title.slice!("WATCH:")
+    title.slice!("The Download, Mar")
     title.strip
   end
 
