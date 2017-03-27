@@ -2,6 +2,8 @@ class Phrase < ApplicationRecord
   has_many :phrase_entries, dependent: :destroy
   has_many :entries, through: :phrase_entries
 
+  BLCKLIST = ["Tech", "App", "Deal", "Video", "Game", "Computer", "Business", "Service", "User", "System", "Device", "Live", "Plan", "Report", "Feature", "Program", "Machine", "Company", "Speed", "Phone", "Offer", "Tool", "Internet", "Review", "Source", "Job", "Human", "Top", "File", "Store", "Team", "Power", "Red", "Car", "Firm", "Market", "Pro", "Hardware", "Street", "Online", "Partner", "News", "Set", "Call", "Hard", "Test", "Network", "Smart", "Sharing", "Office", "Ready", "Play", "Week", "Free", "Faster", "Challenge", "Join", "Tease", "Start", "Enterprise", "Sell", "Content", "Friend", "Issue", "Win", "Download", "Bring", "Share", "Consumer", "Customer", "Gaming", "Display", "Web"]
+
   def count
     self.phrase_entries.count
   end
@@ -20,6 +22,7 @@ class Phrase < ApplicationRecord
 
   def self.create_or_increment(content, entry_id)
     return if ContextWord.where("lower(name) = ?", content).present?
+    return if BLACKLIST.include?(content.capitalize)
     phrase = Phrase.where(content: content).take
     unless phrase.present?
       phrase = Phrase.create!(content: content)
