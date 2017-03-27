@@ -2,7 +2,7 @@ class Phrase < ApplicationRecord
   has_many :phrase_entries, dependent: :destroy
   has_many :entries, through: :phrase_entries
 
-  BLACKLIST = ["The Download Mar", "WATCH"]
+  BLACKLIST = ["WATCH"]
 
   def count
     self.phrase_entries.count
