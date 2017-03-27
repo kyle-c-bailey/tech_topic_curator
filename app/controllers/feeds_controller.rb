@@ -101,7 +101,7 @@ class FeedsController < ApplicationController
         end
       end
 
-      phrase_hash.delete_if { |phrase, meta| meta[:count] < 4 }
+      phrase_hash.delete_if { |phrase, meta| meta[:count] < 5 }
       phrase_hash.each do |phrase, meta|
         meta[:sources].each do |entry_id|
           Phrase.create_or_increment(phrase, entry_id)
@@ -135,7 +135,7 @@ class FeedsController < ApplicationController
         end
       end
 
-      phrase_hash.delete_if { |phrase, meta| meta[:count] < 4 }
+      phrase_hash.delete_if { |phrase, meta| meta[:count] < 5 }
       phrase_hash.each do |phrase, meta|
         containing_phrase = Phrase.where("content like ?", "%#{phrase}%").take
         if containing_phrase.present?
@@ -169,7 +169,7 @@ class FeedsController < ApplicationController
         end
       end
 
-      phrase_hash.delete_if { |phrase, meta| meta[:count] < 4 }
+      phrase_hash.delete_if { |phrase, meta| meta[:count] < 5 }
       phrase_hash.each do |phrase, meta|
         containing_phrase = Phrase.where("content like ?", "%#{phrase}%").take
         if containing_phrase.present?

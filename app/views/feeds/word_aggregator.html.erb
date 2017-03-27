@@ -4,7 +4,7 @@
       <span style="color:red;"><%= item.category.name.titleize %></span>
   <% end %>
   <br>
-  <% phrase.entries.joins(:context_categories).each do |entry| %>
+  <% phrase.entries.each do |entry| %>
     <%= link_to entry.title, entry_path(entry.id) %>
     <% entry.context_categories.each do |context_category| %>
       <span style="color:red;"><%= context_category.name.titleize %></span>
