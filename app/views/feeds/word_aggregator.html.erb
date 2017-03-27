@@ -1,14 +1,16 @@
 <% @phrases.each do |phrase| %>
-  <%= "\"#{phrase.content}\" has #{phrase.count} occurrences" %>
-  <% Item.where('lower(name) = ?', phrase.content.downcase).each do |item| %>
-      <span style="color:red;"><%= item.category.name.titleize %></span>
-  <% end %>
+  <h3>
+    <%= "\"#{phrase.content}\" has #{phrase.count} occurrences" %>
+    <% Item.where('lower(name) = ?', phrase.content.downcase).each do |item| %>
+        <span style="color:red;"><%= item.category.name.titleize %></span>
+    <% end %>
+  </h3>
   <br>
 
   <% ContextCategory.all do |category| %>
     <% entries = phrase.entries.joins(:context_categories).where("context_categories.id = ?", category.id) %>
     <% next unless entries.present? %>
-    <%= "#{phrase.content} articles about #{category.name.titleize}:" %>
+    <%= "\"#{phrase.content}\" articles about #{category.name.titleize}:" %><br>
     <% entries.each do |entry| %>
       <%= link_to entry.title, entry_path(entry.id) %><br>
     <% end %>
@@ -17,7 +19,7 @@
 
   <% contextless_entries = phrase.entries.where("entries.id NOT IN (SELECT entry_id from entry_contexts)") %>
   <% if contextless_entries.present? %>
-    <%= "Other #{phrase.content} articles:" %>
+    <%= "Other \"#{phrase.content}\" articles:" %><br>
     <% contextless_entries.each do |entry| %>
       <%= link_to entry.title, entry_path(entry.id) %><br>
     <% end %>
