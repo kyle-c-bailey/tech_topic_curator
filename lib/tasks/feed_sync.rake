@@ -85,7 +85,7 @@ namespace :feed_sync do
       if containing_phrases.present?
         meta[:sources] = meta[:sources] - containing_phrases.pluck(:entry_id)
       end
-      next next if meta[:sources].size < 5
+      next if meta[:sources].size < 5
       meta[:sources].each do |entry_id|
         Phrase.create_or_increment(phrase, entry_id)
       end
