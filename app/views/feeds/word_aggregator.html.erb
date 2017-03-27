@@ -7,7 +7,7 @@
   </h3>
   <br>
 
-  <% ContextCategory.all do |category| %>
+  <% ContextCategory.all.each do |category| %>
     <% entries = phrase.entries.joins(:context_categories).where("context_categories.id = ?", category.id) %>
     <% next unless entries.present? %>
     <%= "\"#{phrase.content}\" articles about #{category.name.titleize}:" %><br>
