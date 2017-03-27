@@ -3,7 +3,7 @@ class Entry < ApplicationRecord
   has_many :phrase_entries, dependent: :destroy
   has_many :entry_contexts, dependent: :destroy
   has_many :context_categories, through: :entry_contexts
-  after_create :set_context
+  after_save :set_context
 
   scope :last_day, -> { where("created_at > ?", 24.hours.ago) }
 
