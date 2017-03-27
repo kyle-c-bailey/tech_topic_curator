@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :feeds do
     collection do
       get 'word_aggregator'
+      post 'clear_entries'
     end
     member do
       get 'entries'

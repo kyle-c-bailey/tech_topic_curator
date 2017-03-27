@@ -65,6 +65,11 @@ class FeedsController < ApplicationController
     @phrases = Phrase.joins(:phrase_entries).group("phrases.id").order("count(phrases.id) desc")
   end
 
+  def clear_entries
+    Entry.destroy_all
+    redirect_to feeds_path
+  end
+
   private
 
     def generate_three_word_phrases

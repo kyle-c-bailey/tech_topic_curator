@@ -29,4 +29,6 @@
 
 <br>
 
-<button class="btn btn-link"><%= link_to 'New Feed', new_feed_path %></button>
+<%= link_to 'New Feed', new_feed_path %>
+
+<br><br><%= link_to 'Clear Entries', clear_entries_feeds_path, method: :post, data: { confirm: 'Are you sure?' } %>
