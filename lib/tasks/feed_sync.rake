@@ -45,7 +45,7 @@ namespace :feed_sync do
       end
     end
 
-    phrase_hash.delete_if { |phrase, meta| meta[:count] < 5 }
+    phrase_hash.delete_if { |phrase, meta| meta[:count] < 4 }
     phrase_hash.each do |phrase, meta|
       meta[:sources].each do |entry_id|
         Phrase.create_or_increment(phrase, entry_id)
@@ -79,13 +79,13 @@ namespace :feed_sync do
       end
     end
 
-    phrase_hash.delete_if { |phrase, meta| meta[:count] < 5 }
+    phrase_hash.delete_if { |phrase, meta| meta[:count] < 4 }
     phrase_hash.each do |phrase, meta|
       containing_phrases = Phrase.where("content like ?", "%#{phrase}%").includes(:phrase_entries)
       if containing_phrases.present?
         meta[:sources] = meta[:sources] - containing_phrases.pluck(:entry_id)
       end
-      next if meta[:sources].size < 5
+      next if meta[:sources].size < 4
       meta[:sources].each do |entry_id|
         Phrase.create_or_increment(phrase, entry_id)
       end
@@ -114,13 +114,13 @@ namespace :feed_sync do
       end
     end
 
-    phrase_hash.delete_if { |phrase, meta| meta[:count] < 5 }
+    phrase_hash.delete_if { |phrase, meta| meta[:count] < 4 }
     phrase_hash.each do |phrase, meta|
       containing_phrases = Phrase.where("content like ?", "%#{phrase}%").includes(:phrase_entries)
       if containing_phrases.present?
         meta[:sources] = meta[:sources] - containing_phrases.pluck(:entry_id)
       end
-      next if meta[:sources].size < 5
+      next if meta[:sources].size < 4
       meta[:sources].each do |entry_id|
         Phrase.create_or_increment(phrase, entry_id)
       end
