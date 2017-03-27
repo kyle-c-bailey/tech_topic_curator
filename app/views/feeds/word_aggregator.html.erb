@@ -6,8 +6,8 @@
   <br>
   <% phrase.phrase_entries.each do |pe| %>
     <%= link_to pe.entry.title, entry_path(pe.entry_id) %><br>
-    <% ContextItem.where('lower(name) = ?', pe.content.downcase).each do |item| %>
-      <span style="color:red;"><%= item.context_category.name.titleize %></span>
+    <% ContextWord.where('lower(name) = ?', pe.content.downcase).each do |word| %>
+      <span style="color:red;"><%= word.context_category.name.titleize %></span>
     <% end %>
   <% end %>
   <br>
