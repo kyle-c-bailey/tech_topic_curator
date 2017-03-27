@@ -1,6 +1,7 @@
 class Entry < ApplicationRecord
   belongs_to :feed
   has_many :phrase_entries, dependent: :destroy
+  has_many :phrases, through: :phrase_entries
   has_many :entry_contexts, dependent: :destroy
   has_many :context_categories, through: :entry_contexts
   after_save :set_context
