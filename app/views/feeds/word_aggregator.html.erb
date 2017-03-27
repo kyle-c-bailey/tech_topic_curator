@@ -6,7 +6,7 @@
   <br>
 
   <% ContextCategory.each do |category| %>
-    <% entries = phrase.entries.joins(:context_categories).where("context_categories.id = ?" category.id) %>
+    <% entries = phrase.entries.joins(:context_categories).where("context_categories.id = ?", category.id) %>
     <% next unless entries.present %>
     <%= "#{phrase.content} articles about #{category.name.titleize}:" %>
     <% entries.each do |entry| %>
