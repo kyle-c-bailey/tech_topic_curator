@@ -6,6 +6,8 @@ class Entry < ApplicationRecord
   has_many :context_categories, through: :entry_contexts
   after_save :set_context
 
+  validates_uniqueness_of :title
+
   scope :last_day, -> { where("created_at > ?", 24.hours.ago) }
 
   private
