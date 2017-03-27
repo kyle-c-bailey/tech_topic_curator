@@ -5,9 +5,9 @@
   <% end %>
   <br>
   <% phrase.phrase_entries.each do |pe| %>
-    <%= link_to pe.entry.title, entry_path(pe.entry_id) %><br>
+    <%= link_to pe.entry.title, entry_path(pe.entry_id) %>
     <% EntryContext.where(entry_id: pe.entry_id).each do |ec| %>
-      <span style="color:red;"><%= ec.context_category.name.titleize %></span>
+      <span style="color:red;"><%= ec.context_category.name.titleize %></span><br>
     <% end %>
   <% end %>
   <br>
