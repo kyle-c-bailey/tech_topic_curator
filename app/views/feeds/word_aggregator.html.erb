@@ -12,7 +12,7 @@
     <div>
       <%= "#{phrase.example} (#{phrase.count})" %>
       <% phrase.categories.each do |item| %>
-          <span style="color:red;"><%= "- #{item.category.name.titleize}" %></span>
+        <%= "- #{item.category.name.titleize}" %>
       <% end %>
     </div>
 

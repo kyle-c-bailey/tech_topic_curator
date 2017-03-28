@@ -1,15 +1,17 @@
-<div role="tab" id="<%= header_id %>">
-  <h5 class="mb-0">
-    <a class="collapsed" data-toggle="collapse" data-parent="#<%= accordion_id %>" href="#<%= control_id %>" aria-expanded="false" aria-controls="<%= control_id %>">
-      <%= title %>
-    </a>
-  </h5>
-</div>
+<div class="accordion-card">
+  <div role="tab" id="<%= header_id %>">
+    <h5 class="mb-0">
+      <a class="collapsed" data-toggle="collapse" data-parent="#<%= accordion_id %>" href="#<%= control_id %>" aria-expanded="false" aria-controls="<%= control_id %>">
+        <%= title %>
+      </a>
+    </h5>
+  </div>
 
-<div id="<%= control_id %>" class="collapse" role="tabpanel" aria-labelledby="<%= header_id %>">
-  <div class="card-block">
-    <% entries.each do |entry| %>
-      <%= link_to entry.title, entry_path(entry.id) %><br>
-    <% end %>
+  <div id="<%= control_id %>" class="collapse" role="tabpanel" aria-labelledby="<%= header_id %>">
+    <div class="card-block">
+      <% entries.each do |entry| %>
+        <%= link_to entry.title, entry_path(entry.id) %><br>
+      <% end %>
+    </div>
   </div>
 </div>
