@@ -2,7 +2,10 @@
 
 <h3>Add a new context</h3><br>
 <%= form_for @context do |f| %>
-  <%= f.file_field :context_file %>
+
+  Display Name: <%= f.text_field :name %><br><br>
+  Priority: <%= f.number_field :priority %><br><br>
+  <%= f.file_field :context_file %><br><br>
 
   <div class="actions">
     <%= f.submit %>
@@ -15,5 +18,6 @@
 <h3>Current Categories</h3>
 <% @contexts.each do |context| %>
   <%= link_to context.name, context_category_path(context.id) %><br>
+  <%= "Prioirty: #{context.priority}" %><br>
   <%= link_to 'Destroy', context, method: :delete, data: { confirm: 'Are you sure?' } %><br><br>
 <% end %>
