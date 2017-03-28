@@ -20,12 +20,12 @@
       <% entries = phrase.entries.joins(:context_categories).where("context_categories.id = ?", category.id) %>
       <% next unless entries.present? && entries.count > 2 %>
       <% title = "\"#{phrase.example}\" articles about #{category.name.titleize}:" %>
-      <%= render partial: "accordion_card", locals: {title: title, entries: entries, control_id: "#{phrase.content}-collapse#{control_id}"}, expanded: control_id == 1 %>
+      <%= render partial: "accordion_card", locals: {title: title, entries: entries, control_id: "#{phrase.content}-collapse#{control_id}", expanded: control_id == 1} %>
       <% control_id = control_id + 1 %>
     <% end %>
 
     <% title = "All \"#{phrase.example}\" articles:" %>
-    <%= render partial: "accordion_card", locals: {title: title, entries: phrase.entries, control_id: "#{phrase.content}-collapse#{control_id}"}, expanded: control_id == 1 %>
+    <%= render partial: "accordion_card", locals: {title: title, entries: phrase.entries, control_id: "#{phrase.content}-collapse#{control_id}", , expanded: control_id == 1} %>
   </div>
 
   <br>
