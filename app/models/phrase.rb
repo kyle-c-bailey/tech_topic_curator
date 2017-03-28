@@ -21,7 +21,7 @@ class Phrase < ApplicationRecord
   end
 
   def categories
-    Item.where('lower(name) = ?', phrase.content.downcase)
+    Item.where('lower(name) = ?', self.content.downcase)
   end
 
   def entry_display_array
