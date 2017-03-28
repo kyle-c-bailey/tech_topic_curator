@@ -21,13 +21,18 @@ body {
   margin-bottom: 20px;
   background-color: #333a3a;
   border-radius: 5px;
-  padding: 10px;
   color: white;
   font-family: 'Open Sans', sans-serif;
+  .feed-card-contents {
+    padding: 10px;
+  }
   a {
     color: white;
     &:hover, &:visited, &:focus {
       color: white;
+    }
+    &:focus {
+      text-decoration: none;
     }
   }
   .accordion-card {
@@ -43,6 +48,7 @@ body {
     border-bottom: 1px solid #787878;
   }
   .top-tech-companies {
-    background-color: #00dbdb;
+    background-color: #66ff66;
+    height: 5px;
   }
 }
