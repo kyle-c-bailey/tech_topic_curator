@@ -47,8 +47,16 @@ body {
     margin-bottom: 5px;
     border-bottom: 1px solid #787878;
   }
-  .top-tech-companies {
-    background-color: #66ff66;
+  .top-tech-companies, .popular-tech {
+    border-radius: 4px 4px 0 0;
     height: 5px;
   }
+  .top-tech-companies { background-color: #66ff66; }
+  .popular-tech { background-color: #ff6666; }
+  .tech-topics { background-color: #ff66ff; }
+  .tech-products { background-color: #ffff00; }
+  .tech-companies { background-color: #ff8000; }
+  .apple-stuff { background-color: white; }
+  .hardware { background-color: #8000ff; }
+  .operating-systems { background-color: #00ffff; }
 }
