@@ -1,10 +1,10 @@
-<h2>Trending Articles:<h2>
-<%= Entry.most_phrases.each do |info| %>
+<h2>Trending Articles:</h2>
+<% Entry.most_phrases.each do |info| %>
   <% entry = Entry.find(info[0]) %>
   <%= link_to entry.title, entry_path(entry.id) %><br>
 <% end %>
 
-<h2>Trending Topics:<h2>
+<h2>Trending Topics:</h2>
 <% @phrases.each_with_index do |phrase, idx| %>
   <h3>
     <%= "\"#{phrase.example}\" has #{phrase.count} occurrences" %>
