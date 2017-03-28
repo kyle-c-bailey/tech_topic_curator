@@ -20,6 +20,10 @@ class Phrase < ApplicationRecord
     end
   end
 
+  def categories
+    Item.where('lower(name) = ?', phrase.content.downcase)
+  end
+
   def entry_display_array
     all_entries = self.entries.joins(:context_categories)
     display_array = []
