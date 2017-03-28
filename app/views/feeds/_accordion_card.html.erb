@@ -1,13 +1,13 @@
 <div class="card">
   <div class="card-header" role="tab" id="<%= header_id %>">
     <h5 class="mb-0">
-      <a class="<%= 'collapsed' unless expanded %>" data-toggle="collapse" data-parent="#<%= accordion_id %>" href="#<%= control_id %>" aria-expanded="<%= expanded %>" aria-controls="<%= control_id %>">
+      <a class="collapsed" data-toggle="collapse" data-parent="#<%= accordion_id %>" href="#<%= control_id %>" aria-expanded="false" aria-controls="<%= control_id %>">
         <%= title %>
       </a>
     </h5>
   </div>
 
-  <div id="<%= control_id %>" class="collapse <%= 'show' if expanded %>" role="tabpanel" aria-labelledby="<%= header_id %>">
+  <div id="<%= control_id %>" class="collapse" role="tabpanel" aria-labelledby="<%= header_id %>">
     <div class="card-block">
       <% entries.each do |entry| %>
         <%= link_to entry.title, entry_path(entry.id) %><br>
