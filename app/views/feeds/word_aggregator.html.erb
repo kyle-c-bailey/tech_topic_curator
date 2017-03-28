@@ -6,7 +6,7 @@
     <% end %>
   </h3>
   <br>
-  <% if phrase.similar_phrases.present? %>
+  <% if false #phrase.similar_phrases.present? %>
     Similar phrases:<br>
     <% phrase.similar_phrases.each do |similar_phrase| %>
       <%= "#{similar_phrase[:example]} - #{similar_phrase[:count]} shared articles" %><br>

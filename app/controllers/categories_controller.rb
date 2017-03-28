@@ -17,9 +17,9 @@ class CategoriesController < ApplicationController
   def create
     file = params[:category][:category_file]
 
-    file_name = params[:context_category][:name]
+    file_name = params[:category][:name]
     return if file_name.empty?
-    priority = params[:context_category][:priority].present? ? params[:context_category][:priority] : 3
+    priority = params[:category][:priority].present? ? params[:category][:priority] : 3
 
     Category.where(name: file_name).destroy_all
     category = Category.create!(name: file_name, priority: priority)
