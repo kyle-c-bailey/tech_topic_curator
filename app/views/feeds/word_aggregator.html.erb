@@ -25,7 +25,7 @@
     <% end %>
 
     <% title = "All \"#{phrase.example}\" articles:" %>
-    <%= render partial: "accordion_card", locals: {title: title, entries: phrase.entries, control_id: "#{phrase.content}-collapse#{control_id}", , expanded: control_id == 1} %>
+    <%= render partial: "accordion_card", locals: {title: title, entries: phrase.entries, control_id: "#{phrase.content}-collapse#{control_id}", expanded: control_id == 1} %>
   </div>
 
   <br>
