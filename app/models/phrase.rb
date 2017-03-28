@@ -2,7 +2,7 @@ class Phrase < ApplicationRecord
   has_many :phrase_entries, dependent: :destroy
   has_many :entries, through: :phrase_entries
 
-  SINGLE_PHRASE_BLACKLIST = ["Tech", "App", "Deal", "Video", "Game", "Computer", "Business", "Service", "User", "System", "Device", "Live", "Plan", "Report", "Feature", "Program", "Machine", "Company", "Speed", "Phone", "Offer", "Tool", "Internet", "Review", "Source", "Job", "Human", "Top", "File", "Store", "Team", "Power", "Red", "Car", "Firm", "Market", "Pro", "Hardware", "Street", "Online", "Partner", "News", "Set", "Call", "Hard", "Test", "Network", "Smart", "Sharing", "Office", "Ready", "Play", "Week", "Free", "Faster", "Challenge", "Join", "Tease", "Start", "Enterprise", "Sell", "Content", "Friend", "Issue", "Win", "Download", "Bring", "Share", "Consumer", "Customer", "Gaming", "Display", "Web"]
+  SINGLE_PHRASE_BLACKLIST = ["Tech", "App", "Deal", "Video", "Game", "Computer", "Business", "Service", "User", "System", "Device", "Live", "Plan", "Report", "Feature", "Program", "Machine", "Company", "Speed", "Phone", "Offer", "Tool", "Internet", "Review", "Source", "Job", "Human", "Top", "File", "Store", "Team", "Power", "Red", "Car", "Firm", "Market", "Pro", "Hardware", "Street", "Online", "Partner", "News", "Set", "Call", "Hard", "Test", "Network", "Smart", "Sharing", "Office", "Ready", "Play", "Week", "Free", "Faster", "Challenge", "Join", "Tease", "Start", "Enterprise", "Sell", "Content", "Friend", "Issue", "Win", "Download", "Bring", "Share", "Consumer", "Customer", "Gaming", "Display", "Web", "MIT"]
 
   def count
     self.phrase_entries.count
