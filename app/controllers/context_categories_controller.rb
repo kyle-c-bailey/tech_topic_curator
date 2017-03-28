@@ -20,6 +20,7 @@ class ContextCategoriesController < ApplicationController
     file_name = params[:context_category][:name]
     return if file_name.empty?
     priority = params[:context_category][:priority].present? ? params[:context_category][:priority] : 3
+
     ContextCategory.where(name: file_name).destroy_all
     context = ContextCategory.create!(name: file_name, priority: priority)
 

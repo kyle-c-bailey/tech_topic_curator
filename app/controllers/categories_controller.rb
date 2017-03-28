@@ -17,9 +17,12 @@ class CategoriesController < ApplicationController
   def create
     file = params[:category][:category_file]
 
-    file_name = File.basename(file.original_filename ,File.extname(file.original_filename))
+    file_name = params[:context_category][:name]
+    return if file_name.empty?
+    priority = params[:context_category][:priority].present? ? params[:context_category][:priority] : 3
+
     Category.where(name: file_name).destroy_all
-    category = Category.create!(name: file_name)
+    category = Category.create!(name: file_name, priority: priority)
 
     file_contents = file.read
     file_contents.gsub!(/\r\n?/, "\n")
