@@ -1,6 +1,6 @@
 <% @phrases.each do |phrase| %>
   <h3>
-    <%= "\"#{phrase.example}\" has #{phrase.count} occurrences" %>
+    <%= "\"#{phrase.example.titleize}\" has #{phrase.count} occurrences" %>
     <% Item.where('lower(name) = ?', phrase.content.downcase).each do |item| %>
         <span style="color:red;"><%= item.category.name.titleize %></span>
     <% end %>
@@ -9,7 +9,7 @@
   <% if phrase.similar_phrases.present? %>
     Similar phrases:<br>
     <% phrase.similar_phrases.each do |similar_phrase| %>
-      <%= "#{similar_phrase[:example]} - #{similar_phrase[:count]} shared articles" %><br>
+      <%= "#{similar_phrase[:example].titleize} - #{similar_phrase[:count]} shared articles" %><br>
     <% end %>
     <br>
   <% end %>
