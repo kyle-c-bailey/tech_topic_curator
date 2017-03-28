@@ -10,6 +10,10 @@ class Entry < ApplicationRecord
 
   scope :last_day, -> { where("created_at > ?", 24.hours.ago) }
 
+  def self.most_phrases
+    PhraseEntry.all.group(:entry_id).count.to_a.sort_by{ |entry_id, count| count }.reverse!.top(10)
+  end
+
   private
 
   def set_context
