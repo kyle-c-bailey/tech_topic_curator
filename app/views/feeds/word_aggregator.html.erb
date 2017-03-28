@@ -10,9 +10,9 @@
 <% @phrases.each_with_index do |phrase, idx| %>
   <div class="feed-card">
     <h3>
-      <%= "\"#{phrase.example}\" has #{phrase.count} occurrences" %>
+      <%= "#{phrase.example} (#{phrase.count})" %>
       <% phrase.categories.each do |item| %>
-          <span style="color:red;"><%= item.category.name.titleize %></span>
+          <span style="color:red;"><%= "- #{item.category.name.titleize}" %></span>
       <% end %>
     </h3>
     <br>
@@ -41,7 +41,4 @@
       <%= render partial: "accordion_card", locals: {title: title, entries: phrase.entries, control_id: control_id, header_id: header_id, accordion_id: "accordion#{idx}"} %>
     </div>
   </div>
-
-  <br>
-  <br>
 <% end %>
