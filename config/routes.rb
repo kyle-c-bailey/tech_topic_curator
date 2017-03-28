@@ -11,5 +11,10 @@ Rails.application.routes.draw do
   resources :entries, only: [:index, :show]
   resources :categories
   resources :context_categories
+  resources :single_word_blacklist_items, only: [:index] do
+    collection do
+      post 'batch_create'
+    end
+  end
   root 'feeds#index'
 end

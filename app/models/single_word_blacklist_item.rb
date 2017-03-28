@@ -1,0 +1,2 @@
+class SingleWordBlacklistItem < ApplicationRecord
+end

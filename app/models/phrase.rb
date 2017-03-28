@@ -14,18 +14,18 @@ class Phrase < ApplicationRecord
       Phrase.all.each do |phrase|
         next if phrase.id == self.id
         intersection = self.phrase_entries.pluck(:entry_id) & phrase.phrase_entries.pluck(:entry_id)
-        similar_phrases << {content: phrase.content, count: intersection.size} if intersection.size > 3
+        similar_phrases << {example: phrase.example, count: intersection.size} if intersection.size > 3
       end
       similar_phrases
     end
   end
 
-  def self.create_or_increment(content, entry_id)
+  def self.create_or_increment(content, entry_id, example)
     return if ContextWord.where("lower(name) = ?", content).present?
     return if SINGLE_PHRASE_BLACKLIST.include?(content.capitalize)
     phrase = Phrase.where(content: content).take
     unless phrase.present?
-      phrase = Phrase.create!(content: content)
+      phrase = Phrase.create!(content: content, example: example)
     end
     PhraseEntry.create!(phrase_id: phrase.id, entry_id: entry_id)
   end
