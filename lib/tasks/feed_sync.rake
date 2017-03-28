@@ -33,7 +33,7 @@ namespace :feed_sync do
         word = clean_word(word)
         next_word = clean_word(title_words[next_word_index])
         two_word = clean_word(title_words[two_word_index])
-        next if is_blacklist_word(word) || is_blacklist_word(next_word) || is_blacklist_word(two_word)
+        next if is_blacklist_word?(word) || is_blacklist_word?(next_word) || is_blacklist_word?(two_word)
         next if is_common_word?(word) && is_common_word?(next_word) && is_common_word?(two_word)
 
         phrase_content = "#{word.singularize.chomp("'")} #{next_word.singularize.chomp("'")} #{two_word.singularize.chomp("'")}"
@@ -69,7 +69,7 @@ namespace :feed_sync do
 
         word = clean_word(word)
         next_word = clean_word(title_words[next_word_index])
-        next if is_blacklist_word(word) || is_blacklist_word(next_word)
+        next if is_blacklist_word?(word) || is_blacklist_word?(next_word)
         next if is_common_word?(word) && is_common_word?(next_word)
 
         phrase_content = "#{word.singularize.chomp("'")} #{next_word.singularize.chomp("'")}"
