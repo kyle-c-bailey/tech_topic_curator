@@ -7,7 +7,7 @@
     </h5>
   </div>
 
-  <div id="<%= control_id %>" class="collapse show" role="tabpanel" aria-labelledby="<%= header_id %>">
+  <div id="<%= control_id %>" class="collapse <%= 'show' if expanded %>" role="tabpanel" aria-labelledby="<%= header_id %>">
     <div class="card-block">
       <% entries.each do |entry| %>
         <%= link_to entry.title, entry_path(entry.id) %><br>
