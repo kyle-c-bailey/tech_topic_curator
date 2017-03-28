@@ -21,7 +21,7 @@ class Phrase < ApplicationRecord
   end
 
   def entry_display_array
-    all_entries = phrase.entries.joins(:context_categories)
+    all_entries = self.entries.joins(:context_categories)
     display_array = []
     ContextCategory.all.each do |category|
       entries = all_entries.where("context_categories.id = ?", category.id)
