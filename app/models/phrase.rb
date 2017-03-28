@@ -28,7 +28,7 @@ class Phrase < ApplicationRecord
       next unless entries.present? && entries.count > 2
       display_array << {category: category, weight: entries.count/category.priority, entries: entries}
     end
-    display_array.sort_by { |hsh| hsh[:weight] }
+    display_array.sort_by { |hsh| hsh[:weight] }.reverse!
   end
 
   def self.create_or_increment(content, entry_id, example)
