@@ -31,6 +31,7 @@ body {
     }
   }
   .accordion-card {
+    padding-bottom: 5px;
     margin-bottom: 5px;
     border-bottom: 1px solid #787878;
     font-size: 14px;
@@ -40,5 +41,8 @@ body {
     font-size: 20px;
     margin-bottom: 5px;
     border-bottom: 1px solid #787878;
+  }
+  .top-tech-companies {
+    background-color: #00dbdb;
   }
 }
