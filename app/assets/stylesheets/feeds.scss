@@ -26,16 +26,18 @@ body {
   font-family: 'Open Sans', sans-serif;
   a {
     color: white;
-    &:hover, &:visited {
+    &:hover, &:visited, &:focus {
       color: white;
     }
   }
   .accordion-card {
-    margin-bottom: 3px;
+    margin-bottom: 5px;
+    border-bottom: 1px solid #787878;
+    font-size: 14px;
   }
   .phrase-header {
     text-align: center;
-    font-size: 16px;
+    font-size: 20px;
     margin-bottom: 5px;
     border-bottom: 1px solid #787878;
   }

@@ -9,8 +9,8 @@
 <h2>Trending Topics:</h2>
 <% @phrases.each_with_index do |phrase, idx| %>
   <div class="feed-card">
-    <div class="thing-category <%= phrase.category.name if phrase.category %>"></div>
-    <div class="phrase-header"><%= "#{phrase.example} (#{phrase.count})" %></div>
+    <div class="thing-category <%= phrase.category.category.name if phrase.category %>"></div>
+    <div class="phrase-header"><%= "#{phrase.example.capitalize} (#{phrase.count})" %></div>
 
     <% if false #phrase.similar_phrases.present? %>
       Similar phrases:<br>
@@ -24,14 +24,14 @@
     <% all_entries = phrase.entries.joins(:context_categories) %>
     <div id="accordion<%= idx %>" role="tablist" aria-multiselectable="true">
       <% phrase.entry_display_array.each do |display_info| %>
-        <% title = "#{display_info[:category].name.titleize}: #{display_info[:entries].size} Articles" %>
+        <% title = "#{display_info[:category].name.titleize} (#{display_info[:entries].size})" %>
         <% control_id = "#{phrase.content}-collapse#{element_count}" %>
         <% header_id = "#{phrase.content}-header#{element_count}" %>
         <%= render partial: "accordion_card", locals: {title: title, entries: display_info[:entries], control_id: control_id, header_id: header_id, accordion_id: "accordion#{idx}"} %>
         <% element_count = element_count + 1 %>
       <% end %>
 
-      <% title = "All articles:" %>
+      <% title = "All Articles:" %>
       <% control_id = "#{phrase.content}-collapse#{element_count}" %>
       <% header_id = "#{phrase.content}-header#{element_count}" %>
       <%= render partial: "accordion_card", locals: {title: title, entries: phrase.entries, control_id: control_id, header_id: header_id, accordion_id: "accordion#{idx}"} %>
