@@ -20,14 +20,14 @@
     <% ContextCategory.all.each do |category| %>
       <% entries = all_entries.where("context_categories.id = ?", category.id) %>
       <% next unless entries.present? && entries.count > 2 %>
-      <% title = "\"#{phrase.example}\" articles about #{category.name.titleize}:" %>
+      <% title = "Articles about #{category.name.titleize}:" %>
       <% control_id = "#{phrase.content}-collapse#{element_count}" %>
       <% header_id = "#{phrase.content}-header#{element_count}" %>
       <%= render partial: "accordion_card", locals: {title: title, entries: entries, control_id: control_id, expanded: element_count == 1, header_id: header_id, accordion_id: "accordion#{idx}"} %>
       <% element_count = element_count + 1 %>
     <% end %>
 
-    <% title = "All \"#{phrase.example}\" articles:" %>
+    <% title = "All articles:" %>
     <% control_id = "#{phrase.content}-collapse#{element_count}" %>
     <% header_id = "#{phrase.content}-header#{element_count}" %>
     <%= render partial: "accordion_card", locals: {title: title, entries: phrase.entries, control_id: control_id, expanded: element_count == 1, header_id: header_id, accordion_id: "accordion#{idx}"} %>
