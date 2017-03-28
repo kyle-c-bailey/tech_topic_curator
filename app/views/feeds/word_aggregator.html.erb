@@ -14,36 +14,19 @@
     <br>
   <% end %>
 
-<!--   <% ContextCategory.all.each do |category| %>
-    <% entries = phrase.entries.joins(:context_categories).where("context_categories.id = ?", category.id) %>
-    <% next unless entries.present? && entries.count > 2 %>
-    <%= "\"#{phrase.example}\" articles about #{category.name.titleize}:" %><br>
-    <% entries.each do |entry| %>
-      <%= link_to entry.title, entry_path(entry.id) %><br>
-    <% end %>
-    <br>
-  <% end %> -->
-
   <% control_id = 1 %>
   <div id="accordion" role="tablist" aria-multiselectable="true">
     <% ContextCategory.all.each do |category| %>
       <% entries = phrase.entries.joins(:context_categories).where("context_categories.id = ?", category.id) %>
       <% next unless entries.present? && entries.count > 2 %>
       <% title = "\"#{phrase.example}\" articles about #{category.name.titleize}:" %>
-      <%= render partial: "accordion_card", locals: {title: title, entries: entries, control_id: "#{phrase.content}-collapse#{control_id}"} %>
+      <%= render partial: "accordion_card", locals: {title: title, entries: entries, control_id: "#{phrase.content}-collapse#{control_id}"}, expanded: control_id == 1 %>
       <% control_id = control_id + 1 %>
     <% end %>
 
     <% title = "All \"#{phrase.example}\" articles:" %>
-    <%= render partial: "accordion_card", locals: {title: title, entries: phrase.entries, control_id: "#{phrase.content}-collapse#{control_id}"} %>
+    <%= render partial: "accordion_card", locals: {title: title, entries: phrase.entries, control_id: "#{phrase.content}-collapse#{control_id}"}, expanded: control_id == 1 %>
   </div>
-
-
-<!--   <%= "All \"#{phrase.example}\" articles:" %><br>
-  <% phrase.entries.each do |entry| %>
-    <%= link_to entry.title, entry_path(entry.id) %><br>
-  <% end %>
-  <br> -->
 
   <br>
   <br>
