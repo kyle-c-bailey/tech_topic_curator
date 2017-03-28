@@ -9,13 +9,13 @@
 <h2>Trending Topics:</h2>
 <% @phrases.each_with_index do |phrase, idx| %>
   <div class="feed-card">
-    <h3>
+    <div>
       <%= "#{phrase.example} (#{phrase.count})" %>
       <% phrase.categories.each do |item| %>
           <span style="color:red;"><%= "- #{item.category.name.titleize}" %></span>
       <% end %>
-    </h3>
-    <br>
+    </div>
+
     <% if false #phrase.similar_phrases.present? %>
       Similar phrases:<br>
       <% phrase.similar_phrases.each do |similar_phrase| %>
