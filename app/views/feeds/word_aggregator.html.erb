@@ -1,8 +1,10 @@
 <h2>Trending Articles:</h2>
-<% Entry.most_phrases.each do |info| %>
-  <% entry = Entry.find(info[0]) %>
-  <%= link_to entry.title, entry_path(entry.id) %><br>
-<% end %>
+<ul>
+  <% Entry.most_phrases.each do |info| %>
+    <% entry = Entry.find(info[0]) %>
+    <li><%= link_to entry.title, entry_path(entry.id) %></li>
+  <% end %>
+</ul><br>
 
 <h2>Trending Topics:</h2>
 <% @phrases.each_with_index do |phrase, idx| %>
