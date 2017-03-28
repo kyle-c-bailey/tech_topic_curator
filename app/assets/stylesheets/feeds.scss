@@ -1,6 +1,7 @@
 // Place all the styles related to the feeds controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+@import url(http://fonts.googleapis.com/css?family=Open+Sans);
 
 body {
   padding: 20px;
@@ -18,17 +19,23 @@ body {
   width: 400px;
   margin-right: 20px;
   margin-bottom: 20px;
-  background-color: #253F3F;
+  background-color: #333a3a;
   border-radius: 5px;
   padding: 5px;
   color: white;
+  font-family: 'Open Sans', sans-serif;
   a {
     color: white;
-    &:hover {
+    &:hover, &:visited {
       color: white;
     }
   }
   .accordion-card {
     margin-bottom: 3px;
+  }
+  .phrase-header {
+    text-align: center;
+    font-size: 14px;
+    margin-bottom: 5px;
   }
 }

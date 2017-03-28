@@ -9,7 +9,7 @@
 <h2>Trending Topics:</h2>
 <% @phrases.each_with_index do |phrase, idx| %>
   <div class="feed-card">
-    <div>
+    <div class="phrase-header">
       <%= "#{phrase.example} (#{phrase.count})" %>
       <% phrase.categories.each do |item| %>
         <%= "- #{item.category.name.titleize}" %>
