@@ -20,6 +20,17 @@ class Phrase < ApplicationRecord
     end
   end
 
+  def entry_display_array
+    all_entries = phrase.entries.joins(:context_categories)
+    display_array = []
+    ContextCategory.all.each do |category|
+      entries = all_entries.where("context_categories.id = ?", category.id)
+      next unless entries.present? && entries.count > 2
+      display_array << {category: category, weight: entries.count/category.priority, entries: entries}
+    end
+    display_array.sort_by { |hsh| hsh[:weight] }
+  end
+
   def self.create_or_increment(content, entry_id, example)
     return if ContextWord.where("lower(name) = ?", content).present?
     return if SINGLE_PHRASE_BLACKLIST.include?(content.capitalize)
