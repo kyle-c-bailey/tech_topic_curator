@@ -18,6 +18,7 @@ body {
 .trending-articles {
   color: white;
   width: 70%;
+  border-radius: 5px;
   border: none !important;
   a {
     font-size: 16px;
@@ -30,7 +31,7 @@ body {
     }
   }
   .card-header {
-    background-color: #787878;
+    background-color: #585858;
   }
   .card-block {
     background-color: #333a3a;
