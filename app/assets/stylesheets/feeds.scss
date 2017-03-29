@@ -19,8 +19,9 @@ body {
   width: 400px;
   margin-right: 20px;
   margin-bottom: 20px;
-  background-color: #333a3a;
-  border-radius: 5px;
+  background-color: #333a3a !important;
+  border-radius: 5px !important;
+  border: none !important;
   color: white;
   font-family: 'Open Sans', sans-serif;
   .feed-card-contents {
@@ -41,7 +42,7 @@ body {
   .accordion-card {
     padding-bottom: 5px;
     margin-bottom: 5px;
-    border-bottom: 1px solid #787878;
+    border-bottom: 1px solid #787878; 
     font-size: 12px;
   }
   .phrase-header {
