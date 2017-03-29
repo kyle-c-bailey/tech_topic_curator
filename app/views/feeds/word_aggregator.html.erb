@@ -27,15 +27,15 @@
         <div id="accordion<%= idx %>" role="tablist" aria-multiselectable="true">
           <% phrase.entry_display_array.each do |display_info| %>
             <% title = "#{display_info[:category].name.titleize} (#{display_info[:entries].size})" %>
-            <% control_id = "#{phrase.content}-collapse#{element_count}" %>
-            <% header_id = "#{phrase.content}-header#{element_count}" %>
+            <% control_id = "#{phrase.content.gsub(" ", "-")}-collapse#{element_count}" %>
+            <% header_id = "#{phrase.content.gsub(" ", "-")}-header#{element_count}" %>
             <%= render partial: "accordion_card", locals: {title: title, entries: display_info[:entries], control_id: control_id, header_id: header_id, accordion_id: "accordion#{idx}"} %>
             <% element_count = element_count + 1 %>
           <% end %>
 
           <% title = "All Articles:" %>
-          <% control_id = "#{phrase.content}-collapse#{element_count}" %>
-          <% header_id = "#{phrase.content}-header#{element_count}" %>
+          <% control_id = "#{phrase.content.gsub(" ", "-")}-collapse#{element_count}" %>
+          <% header_id = "#{phrase.content.gsub(" ", "-")}-header#{element_count}" %>
           <%= render partial: "accordion_card", locals: {title: title, entries: phrase.entries, control_id: control_id, header_id: header_id, accordion_id: "accordion#{idx}"} %>
         </div>
       </div>
