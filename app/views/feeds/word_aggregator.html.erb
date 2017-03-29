@@ -1,4 +1,4 @@
-<div class="card">
+<div class="card trending-articles">
   <h3 class="card-header">Trending Articles</h3>
   <div class="card-block">
     <% Entry.most_phrases.each do |info| %>
@@ -6,7 +6,7 @@
       <div><%= link_to entry.title, entry_path(entry.id) %></div>
     <% end %>
   </div>
-</div>
+</div><br><br>
 
 <h2>Trending Topics:</h2>
 <div class="card-columns">
