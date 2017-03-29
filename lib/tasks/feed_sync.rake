@@ -148,7 +148,7 @@ namespace :feed_sync do
   end
 
   def clean_word(word, downcase=true)
-    word = word.chomp(":").chomp(",").chomp("'").gsub(/\u2013|\u2014/, "-").gsub(/\u2019/, "'")
+    word = word.chomp(":").chomp(",").gsub(/\u2013|\u2014/, "-").gsub(/\u2019/, "'").chomp("'")
     if downcase
       word.downcase 
     else
