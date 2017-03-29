@@ -54,7 +54,8 @@ class FeedsController < ApplicationController
   end
 
   def word_aggregator
-    @phrases = Phrase.joins(:phrase_entries).group("phrases.id").order("count(phrases.id) desc")
+    #@phrases = Phrase.joins(:phrase_entries).group("phrases.id").order("count(phrases.id) desc")
+    @phrases = Phrase.joins(:phrase_entries).group("phrases.id").order("RANDOM()")
   end
 
   def clear_entries
