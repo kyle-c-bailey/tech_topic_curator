@@ -10,7 +10,7 @@
   <div id="<%= control_id %>" class="collapse" role="tabpanel" aria-labelledby="<%= header_id %>">
     <div class="card-block">
       <% entries.each do |entry| %>
-        <div class="article-entry"><%= link_to entry.title, entry_path(entry.id) %><div>
+        <div class="article-entry"><%= link_to entry.title, entry_path(entry.id) %></div>
       <% end %>
     </div>
   </div>
