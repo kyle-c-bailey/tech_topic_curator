@@ -26,6 +26,9 @@ body {
   .feed-card-contents {
     padding: 10px;
   }
+  h5 {
+    font-size: 14px
+  }
   a {
     color: white;
     &:hover, &:visited, &:focus {
@@ -39,7 +42,7 @@ body {
     padding-bottom: 5px;
     margin-bottom: 5px;
     border-bottom: 1px solid #787878;
-    font-size: 14px;
+    font-size: 12px;
   }
   .phrase-header {
     text-align: center;
