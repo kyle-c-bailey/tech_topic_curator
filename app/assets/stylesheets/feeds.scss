@@ -15,6 +15,23 @@ body {
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b2e4f0', endColorstr='#57c2e0', GradientType=1 );
 }
 
+.trending-articles {
+  width: 70%
+  a {
+    font-size: 16px;
+    color: white;
+  }
+  &:hover, &:visited, &:focus {
+    color: white;
+  }
+  &:focus {
+    text-decoration: none;
+  }
+  .card-block {
+    background-color: #333a3a;
+  }
+}
+
 .feed-card {
   width: 400px;
   margin-right: 20px;
