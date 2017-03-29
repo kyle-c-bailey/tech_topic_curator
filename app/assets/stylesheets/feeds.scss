@@ -75,7 +75,7 @@ body {
     margin-bottom: 5px;
     border-bottom: 1px solid #787878;
   }
-  .top-tech-companies, .popular-tech, .tech-topics, .tech-products, .tech-companies, .apple-stuff, .hardware, .operating-systems {
+  .top-tech-companies, .popular-tech, .tech-topics, .tech-products, .tech-companies, .apple-stuff, .hardware, .operating-systems, .programming-and-development, .legal-and-political-entities {
     border-radius: 4px 4px 0 0;
     height: 8px;
   }
@@ -100,4 +100,6 @@ body {
 .apple-stuff { background-color: white; }
 .hardware { background-color: #8000ff; }
 .operating-systems { background-color: #00ffff; }
+.programming-and-development { background-color: #D2B48C; }
+.legal-and-political-entities { background-color: #193422; }
 
