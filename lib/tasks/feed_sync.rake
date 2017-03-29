@@ -137,7 +137,7 @@ namespace :feed_sync do
   end
 
   def is_blacklist_word?(word)
-    blacklist_word = ["a", "am", "an", "and", "any", "are", "aren't", "as", "at", "be", "because", "been", "both", "but", "by", "cannot", "can't", "could", "couldn't", "did", "didn't", "do", "does", "doesn't", "doing", "don't", "for", "from", "had", "hadn't", "has", "hasn't", "have", "haven't", "having", "he", "he'd", "he'll", "her", "here", "here's", "hers", "herself", "he's", "him", "himself", "his", "how", "how's", "i", "i'd", "if", "i'll", "i'm", "in", "into", "is", "isn't", "it", "its", "it's", "itself", "i've", "let's", "me", "more", "most", "mustn't", "my", "myself", "no", "nor", "not", "of", "off", "on", "or", "ought", "our", "ours", "ourselves", "shan't", "she", "she'd", "she'll", "she's", "should", "shouldn't", "so", "such", "than", "that", "that's", "the", "their", "theirs", "them", "themselves", "then", "there", "there's", "these", "they", "they'd", "they'll", "they're", "they've", "this", "those", "through", "to", "too", "up", "very", "was", "wasn't", "we", "we'd", "we'll", "were", "we're", "weren't", "we've", "what", "what's", "when", "when's", "where", "where's", "which", "while", "who", "whom", "who's", "why", "why's", "will", "with", "won't", "would", "wouldn't", "you", "you'd", "you'll", "your", "you're", "yours", "yourself", "you've"]
+    blacklist_word = ["a", "am", "an", "and", "any", "are", "aren't", "as", "at", "be", "because", "been", "both", "but", "by", "cannot", "can't", "could", "couldn't", "did", "didn't", "do", "does", "doesn't", "doing", "don't", "for", "from", "had", "hadn't", "has", "hasn't", "have", "haven't", "having", "he", "he'd", "he'll", "her", "here", "here's", "hers", "herself", "he's", "him", "himself", "his", "how", "how's", "i", "i'd", "if", "i'll", "i'm", "in", "into", "is", "isn't", "it", "its", "it's", "itself", "i've", "let's", "me", "more", "most", "mustn't", "my", "myself", "no", "nor", "not", "of", "off", "on", "or", "ought", "our", "ours", "ourselves", "shan't", "she", "she'd", "she'll", "she's", "should", "shouldn't", "so", "such", "than", "that", "that's", "the", "their", "theirs", "them", "themselves", "then", "there", "there's", "these", "they", "they'd", "they'll", "they're", "they've", "this", "those", "through", "to", "too", "up", "very", "was", "wasn't", "we", "we'd", "we'll", "were", "we're", "weren't", "we've", "what", "what's", "when", "when's", "where", "where's", "which", "while", "who", "whom", "who's", "why", "why's", "will", "with", "won't", "would", "wouldn't", "you", "you'd", "you'll", "your", "you're", "yours", "yourself", "you've", "-"]
     blacklist_word.include?(word) || blacklist_word.include?(word.singularize)
   end
 
@@ -148,7 +148,7 @@ namespace :feed_sync do
   end
 
   def clean_word(word, downcase=true)
-    word = word.chomp(":").chomp(",").chomp("'").gsub(/\u2013|\u2014/, "-")
+    word = word.chomp(":").chomp(",").chomp("'").gsub(/\u2013|\u2014/, "-").gsub(/\u2019/, "'")
     if downcase
       word.downcase 
     else
