@@ -1,10 +1,12 @@
-<h2>Trending Articles:</h2>
-<ul>
-  <% Entry.most_phrases.each do |info| %>
-    <% entry = Entry.find(info[0]) %>
-    <li><%= link_to entry.title, entry_path(entry.id) %></li>
-  <% end %>
-</ul><br>
+<div class="card">
+  <h3 class="card-header">Trending Articles</h3>
+  <div class="card-block">
+    <% Entry.most_phrases.each do |info| %>
+      <% entry = Entry.find(info[0]) %>
+      <div><%= link_to entry.title, entry_path(entry.id) %></div>
+    <% end %>
+  </div>
+</div>
 
 <h2>Trending Topics:</h2>
 <div class="card-columns">
