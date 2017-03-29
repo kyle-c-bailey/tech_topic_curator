@@ -16,16 +16,21 @@ body {
 }
 
 .trending-articles {
+  color: white;
   width: 70%
+  border: none !important;
   a {
     font-size: 16px;
     color: white;
+    &:hover, &:visited, &:focus {
+      color: white;
+    }
+    &:focus {
+      text-decoration: none;
+    }
   }
-  &:hover, &:visited, &:focus {
-    color: white;
-  }
-  &:focus {
-    text-decoration: none;
+  .card-header {
+    background-color: #787878;
   }
   .card-block {
     background-color: #333a3a;
